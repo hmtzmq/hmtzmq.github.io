@@ -1,0 +1,132 @@
+解析好的二级域名，cloudflare.com
+VPS一个，防火墙配置好
+---------------------------------
+防火墙配置（阿里云国际）
+自定义 UDP	22/22	IPv4地址段访问	0.0.0.0/0
+自定义 UDP	443/443	IPv4地址段访问	0.0.0.0/0
+自定义 UDP	80/80	IPv4地址段访问	0.0.0.0/0
+自定义 TCP	443/443	IPv4地址段访问	0.0.0.0/0
+自定义 TCP	80/80	IPv4地址段访问	0.0.0.0/0
+全部 ICMP(IPv4)	-1/-1	IPv4地址段访问	0.0.0.0/0
+自定义 TCP	3389/3389	IPv4地址段访问	0.0.0.0/0
+自定义 TCP	22/22	IPv4地址段访问	0.0.0.0/0
+---------------------------------
+#Debian/Ubuntu： apt-get update
+#RedHat/CentOS： yum update
+wget --no-check-certificate -O AutoReinstall.sh https://git.io/AutoReinstall.sh && chmod +x AutoReinstall.sh && bash AutoReinstall.sh
+Linux 密码 Pwd@CentOS Pwd@Linux
+修改 Linux 密码 passwd
+--------------------------------
+ssh-keygen -t rsa
+cd /root/.ssh
+mv id_rsa.pub authorized_keys  
+chmod 600 authorized_keys
+编辑sshd_config，7.4以上版本无此文件(RSAAuthentication)和PubkeyAuthentication两行前面的 # 去掉
+vi /etc/ssh/sshd_config
+systemctl restart sshd.service
+使用WINSCP，把文件id_rsa下载到我们的电脑
+将PasswordAuthentication后面的yes改成no
+vi /etc/ssh/sshd_config
+systemctl restart sshd.service
+----------------------------------
+yum update
+BBR 加速代码: BBR 加速：
+wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+lsmod | grep bbr 查看是否成功，有bbr返回
+----------------------------------
+清理阿里云
+wget http://update.aegis.aliyun.com/download/uninstall.sh
+chmod +x uninstall.sh
+./uninstall.sh
+----------------------------------
+wget http://update.aegis.aliyun.com/download/quartz_uninstall.sh
+chmod +x quartz_uninstall.sh
+./quartz_uninstall.sh
+----------------------------------
+pkill aliyun-service
+rm -fr /etc/init.d/agentwatch /usr/sbin/aliyun-service
+rm -rf /usr/local/aegis*
+----------------------------------
+find . -name 'aliyun*' -type d -exec rm -rf {} \;
+find . -name 'aliyun*' -type f -exec rm -rf {} \;
+find . -name 'aegis*' -type f -exec rm -rf {} \;
+find . -name 'aegis*' -type d -exec rm -rf {} \;
+rm -fr /usr/sbin/aliyun-service /usr/sbin/aliyun_installer
+----------------------------------
+systemctl stop firewalld
+systemctl mask firewalld
+yum install iptables-services
+systemctl enable iptables
+（systemctl [stop|start|restart] iptables）
+touch ip.sh
+cd /root
+vi ip.sh
+将以下命令复制粘贴到ip.sh中
+-----------------------------
+#!/bin/bash
+echo “屏蔽阿里云盾恶意 IP…….”
+iptables -I INPUT -s 140.205.201.0/28 -j DROP
+iptables -I INPUT -s 140.205.201.16/29 -j DROP
+iptables -I INPUT -s 140.205.201.32/28 -j DROP
+iptables -I INPUT -s 140.205.225.192/29 -j DROP
+iptables -I INPUT -s 140.205.225.200/30 -j DROP
+iptables -I INPUT -s 140.205.225.184/29 -j DROP
+iptables -I INPUT -s 140.205.225.183/32 -j DROP
+iptables -I INPUT -s 140.205.225.206/32 -j DROP
+iptables -I INPUT -s 140.205.225.205/32 -j DROP
+iptables -I INPUT -s 140.205.225.195/32 -j DROP
+iptables -I INPUT -s 140.205.225.204/32 -j DROP
+iptables -I INPUT -s 106.11.224.0/26 -j DROP
+iptables -I INPUT -s 106.11.224.64/26 -j DROP
+iptables -I INPUT -s 106.11.224.128/26 -j DROP
+iptables -I INPUT -s 106.11.224.192/26 -j DROP
+iptables -I INPUT -s 106.11.222.64/26 -j DROP
+iptables -I INPUT -s 106.11.222.128/26 -j DROP
+iptables -I INPUT -s 106.11.222.192/26 -j DROP
+iptables -I INPUT -s 106.11.223.0/26 -j DROP
+iptables -I INPUT -s 140.205.201.0/24 -j DROP
+iptables -I INPUT -s 140.205.225.0/24 -j DROP
+iptables -I INPUT -s 112.124.127.224 -j DROP
+iptables -I INPUT -s 112.124.127.44 -j DROP
+iptables -I INPUT -s 112.124.127.64 -j DROP
+iptables -I INPUT -s 112.124.127.53 -j DROP
+iptables -I INPUT -s 120.26.216.168 -j DROP
+iptables -I INPUT -s 120.26.64.126 -j DROP
+iptables -I INPUT -s 121.43.107.174 -j DROP
+iptables -I INPUT -s 121.43.107.176 -j DROP
+iptables -I INPUT -s 121.41.117.242 -j DROP
+iptables -I INPUT -s 121.40.130.38 -j DROP
+iptables -I INPUT -s 121.41.112.148 -j DROP
+iptables -I INPUT -s 115.29.112.222 -j DROP
+iptables -I INPUT -s 115.28.203.70 -j DROP
+iptables -I INPUT -s 42.96.189.63 -j DROP
+iptables -I INPUT -s 115.29.113.101 -j DROP
+iptables -I INPUT -s 120.27.40.113 -j DROP
+iptables -I INPUT -s 115.28.171.22 -j DROP
+iptables -I INPUT -s 115.28.189.208 -j DROP
+iptables -I INPUT -s 121.42.196.232 -j DROP
+iptables -I INPUT -s 115.28.26.13 -j DROP
+iptables -I INPUT -s 120.27.47.144 -j DROP
+iptables -I INPUT -s 120.27.47.33 -j DROP
+iptables -I INPUT -s 112.126.74.55 -j DROP
+iptables -I INPUT -s 182.92.148.207 -j DROP
+iptables -I INPUT -s 182.92.1.233 -j DROP
+iptables -I INPUT -s 112.126.73.56 -j DROP
+iptables -I INPUT -s 123.56.138.37 -j DROP
+iptables -I INPUT -s 123.57.10.133 -j DROP
+iptables -I INPUT -s 112.126.75.174 -j DROP
+iptables -I INPUT -s 182.92.157.118 -j DROP
+iptables -I INPUT -s 112.126.75.221 -j DROP
+iptables -I INPUT -s 182.92.69.212 -j DROP
+iptables -I INPUT -s 10.153.174.11 -j DROP
+iptables -I INPUT -s 10.153.175.147 -j DROP
+iptables -I INPUT -s 10.153.175.146 -j DROP
+iptables -I INPUT -s 110.75.0.0/16 -j DROP
+iptables -I INPUT -s 42.120.0.0/16 -j DROP
+echo “已经屏蔽了阿里云盾恶意 IP”
+------------------------------------
+sh ip.sh
+service iptables save
+systemctl restart iptables
+------------------------------------
+bash <(curl -L -s https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh) | tee v2ray_ins.log
