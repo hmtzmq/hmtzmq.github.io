@@ -28,9 +28,9 @@ ssh连接
 
      systemctl restart sshd.service
 
-​一键安装代码:
+​ 一键
 
-bash <(curl -L -s https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh) | tee v2ray_ins.log
+ bash <(curl -L -s https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh) | tee v2ray_ins.log
 
 BBR 加速代码: BBR 加速：
 
