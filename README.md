@@ -4,7 +4,7 @@ ssh连接
 
  1.ssh-keygen -t rsa
 
- 2. cd /root/.ssh
+ 2.cd /root/.ssh
 
      ls
 
@@ -22,11 +22,11 @@ ssh连接
 
  6.使用WINSCP，把文件id_rsa下载到我们的电脑
 
-7. 将PasswordAuthentication后面的yes改成no
+ 7.将PasswordAuthentication后面的yes改成no
 
-     vi /etc/ssh/sshd_config
+     vi/etc/ssh/sshd_config
 
-      systemctl restart sshd.service
+     systemctl restart sshd.service
 
 ​一键安装代码:
 
