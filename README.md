@@ -1,5 +1,29 @@
 # hmtzmq.github.io
 --------------------------------------
+ssh连接
+ 1.ssh-keygen -t rsa
+ 2. cd /root/.ssh
+     ls
+ 3.mv id_rsa.pub authorized_keys  
+     chmod 600 authorized_keys
+ 4.编辑sshd_config，7.4以上版本无此文件(RSAAuthentication)和PubkeyAuthentication两行前面的 # 去掉
+      vi /etc/ssh/sshd_config
+(为了安全还可以修改默认的SSH端口，找到#port 22，去掉前面的#，然后修改port后的数字。未测试)
+ 5.systemctl restart sshd.service
+ 6.使用WINSCP，把文件id_rsa下载到我们的电脑
+7. 将PasswordAuthentication后面的yes改成no
+     vi /etc/ssh/sshd_config
+      systemctl restart sshd.service
+​一键安装代码:
+
+bash <(curl -L -s https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh) | tee v2ray_ins.log
+BBR 加速代码: BBR 加速：
+
+wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh && chmod +x bbr.sh && ./bbr.sh
+如果安装不了 BBR 请先运行以下代码：
+
+yum -y install wget
+-------------------
 一键安装代码:
 
 bash <(curl -L -s https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh) | tee v2ray_ins.log
