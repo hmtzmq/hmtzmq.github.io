@@ -6,6 +6,8 @@ http://www.lysesoft.com/products/andftp/
 
 https://juicessh.com/changelog
 
+https://accounts.binance.me/zh-CN/register?ref=35795682
+
 ------
 
 ssh连接
