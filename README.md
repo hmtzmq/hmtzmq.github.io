@@ -1,5 +1,13 @@
 # hmtzmq.github.io
 --------------------------------------
+https://github.com/2dust/v2rayNG/releases
+
+http://www.lysesoft.com/products/andftp/
+
+https://juicessh.com/changelog
+
+------
+
 ssh连接
 
  1.ssh-keygen -t rsa
