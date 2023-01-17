@@ -40,6 +40,11 @@ ssh连接
 
 ​一键安装代码:
 
+wget -N --no-check-certificate -q -O install.sh "https://raw.githubusercontent.com/wulabing/V2Ray_ws-tls_bash_onekey/master/install.sh" && chmod +x install.sh && bash install.sh
+
+
+-------------
+
 yum install -y git     #CentOS安装命令
 
 apt install -y git     #Debian安装命令
