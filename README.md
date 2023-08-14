@@ -6,7 +6,11 @@ http://www.lysesoft.com/products/andftp/
 
 https://juicessh.com/changelog
 
-https://accounts.binance.me/zh-CN/register?ref=35795682
+https://accounts.binance.com/register?ref=35795682
+
+https://accounts.binance.com/register?ref=AZN9Y31O
+
+https://card.onekey.so/?i=4LZTP0
 
 ------
 
